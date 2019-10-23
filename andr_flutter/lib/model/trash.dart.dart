@@ -1,3 +1,5 @@
+import "dart:convert";
+
 class Venue
 {
   //TODO INSERT PROPERTIES AND GETTERS/SETTERS
