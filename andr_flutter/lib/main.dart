@@ -4,14 +4,19 @@
 // to the right of the CAPS LOCK key.
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MaterialApp(
+    title: 'Navigation Basics',
+    home: MyApp(),
+  ));
+}
 
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
   static const String _title = '♥ Kinder ♥';
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,62 @@ class MyApp extends StatelessWidget {
             child : new Text( _title),
           ),
         ),
-        body: MyStatefulWidget(),
+        body: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            TextFormField(
+              decoration: InputDecoration(
+                  labelText: 'Entrez la localisation :',
+              ),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Veuillez entrer une localisation';
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Entrez la localisation :',
+              ),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Veuillez entrer une localisation';
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Entrez la localisation :',
+              ),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Veuillez entrer une localisation';
+                }
+                return null;
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: RaisedButton(
+                onPressed: () {
+                  // Validate returns true if the form is valid, or false
+                  // otherwise.
+                  if (_formKey.currentState.validate()) {
+                    // If the form is valid, display a Snackbar.
+                    Scaffold.of(context)
+                        .showSnackBar(SnackBar(content: Text('Processing Data')));
+                  }
+                },
+                child: Text('Submit'),
+              ),
+            ),
+          ],
+        ),
+      ),
       ),
     );
   }
