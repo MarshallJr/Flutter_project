@@ -11,19 +11,71 @@ void main() => runApp(MyApp());
 
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
-  static const String _title = 'Flutter Code Sample';
+  static const String _title = '♥ Kinder ♥';
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
+      theme: ThemeData(
+        primaryColor:Colors.deepPurple,
+      ),
       home: Scaffold(
-        appBar: AppBar(title: const Text(_title)),
+        appBar: AppBar(
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.list), onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SecondRoute()),
+              );
+            }),
+          ],
+          title: new Center(
+            child : new Text( _title),
+          ),
+        ),
         body: MyStatefulWidget(),
       ),
     );
   }
+
+ /* void _nextScreen(){
+  Navigator.of(context).push(
+    MaterialPageRoute<void>(
+      builder:(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            title: new Center( child : new Text('Startup Name Generator')),
+          ),
+          body: Center(child: Text("Salut c'est la seond vue")),
+        );
+      }
+    )
+  );
+}*/
 }
+
+class SecondRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            // Navigate back to first route when tapped.
+            Navigator.pop(context);
+          },
+          child: Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}
+
+
 
 class MyStatefulWidget extends StatefulWidget {
   MyStatefulWidget({Key key}) : super(key: key);
