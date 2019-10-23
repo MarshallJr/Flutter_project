@@ -1,17 +1,44 @@
 import 'env.dart' as secret;
+import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
-void main() {
+/*void main() {
   runApp(MaterialApp(
     title: 'Navigation Basics',
     home: MyApp(),
   ));
-}
+}*/
+void main() => runApp(MyApp(post: fetchPost()));
 
 String baseUrl = "https://api.foursquare.com/v2/venues/search?client_id="+secret.clientId+"&client_secret="+secret.secretId+"&v=20180323&limit=1&ll=40.7243,-74.0018&near=Nantes";
 
+Future<Post> fetchPost() async {
+  final response =  await http.get(baseUrl);
+
+  if (response.statusCode == 200) {
+    // If the call to the server was successful, parse the JSON.
+    return Post.fromJson();
+  } else {
+    // If that call was not successful, throw an error.
+    throw Exception('Failed to load post');
+  }
+}
+
+class Post {
+  final String name;
+  final int distance;
+
+  Post({this.name,this.distance});
+
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+      name: json['name'],
+      distance: json['distance'],
+    );
+  }
+}
 
 
 /// This Widget is the main application widget.
@@ -91,7 +118,7 @@ class MyApp extends StatelessWidget {
                         .showSnackBar(SnackBar(content: Text('Processing Data')));
                   }
                 },
-                child: Text('Sauvegarder'),
+                child: Text('Rechercher'),
               ),
             ),
           ],
