@@ -1,7 +1,4 @@
-// Flutter code sample for
-
-// This example shows how to detect if the user has selected the physical key
-// to the right of the CAPS LOCK key.
+import 'env.dart' as secret;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -56,6 +53,8 @@ class MyApp extends StatelessWidget {
               },
             ),
             TextFormField(
+
+              scrollPadding: EdgeInsets.symmetric(vertical: 5.0),
               decoration: InputDecoration(
                 labelText: 'Entrez la localisation :',
               ),
@@ -89,7 +88,7 @@ class MyApp extends StatelessWidget {
                         .showSnackBar(SnackBar(content: Text('Processing Data')));
                   }
                 },
-                child: Text('Submit'),
+                child: Text('Sauvegarder'),
               ),
             ),
           ],
@@ -98,21 +97,6 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-
- /* void _nextScreen(){
-  Navigator.of(context).push(
-    MaterialPageRoute<void>(
-      builder:(BuildContext context) {
-        return Scaffold(
-          appBar: AppBar(
-            title: new Center( child : new Text('Startup Name Generator')),
-          ),
-          body: Center(child: Text("Salut c'est la seond vue")),
-        );
-      }
-    )
-  );
-}*/
 }
 
 class SecondRoute extends StatelessWidget {
