@@ -1,23 +1,18 @@
 import "package:andr_flutter/model/Venue.dart";
 import "package:http/http.dart" as http;
+import "package:andr_flutter/env.dart" as env;
 
 class venuePicker
 {
-  String baseURL = "";
-
-  /**
-   *
-   */
+  ///Fetch requested venues
   static Set<Venue> fetchVenues()
   {
-    return <Venue>{};
+
+    return null;
   }
 
-  /**
-   *
-   */
-  Future<http.Response> _getVenues()
-  {
-    return http.get(baseURL);
+  ///GET requested venues
+  Future<Venue> getVenues() async {
+
   }
 }

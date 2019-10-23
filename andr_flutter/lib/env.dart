@@ -1,3 +1,6 @@
+//BASIC ENDPOINT
+const String basicEndpoint = "https://api.foursquare.com/v2/venues/search";
+
 //CLIENT ID
 const String clientId = "IP4CF3W41A21QFITZEDSK4DLDRPHU5YELJAENTGOYMZ0GNT4";
 
